@@ -1,23 +1,19 @@
-<div class="container">
-  <h1>Welcome to Sinatra!</h1>
-  <p>Hello, world!</p>
+<% if @error %>
+  <h2><%= @error %></h2>
+<% else %>
+  <h2>User Login</h2>
+<%end %>
 
-  <table>
-    <tr>
-      <th>File Description</th>
-      <th>File Location</th>
-    </tr>
-    <tr>
-      <td>This view file</td>
-      <td><code><%= __FILE__.gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The layout file</td>
-      <td><code><%= File.expand_path('../layout.erb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-    <tr>
-      <td>The current controller</td>
-      <td><code><%= File.expand_path('../../controllers/index.rb', __FILE__).gsub(Sinatra::Application.root, '') %></code></td>
-    </tr>
-  </table>
-</div>
+<% if @user %>
+  <h3><%= @user %></h3>
+<% end %>
+<form action="/user" method="POST">
+  <label for="email">Email</label>
+  <input type="text" id="email" name="user[email]"><br><br>
+  <label for="password">Password</label>
+  <input type="password" id="password" name="user[password]">
+  <input type="submit">
+</form><br>
+
+
+<a href="/user/new">New User Signup</a>
